@@ -1,7 +1,18 @@
 
 import logo from "../../assets/logo.png"
+import axios from "axios"
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 export default () => {
+  let [email, setemail] = useState(null)
+  let [password, setpassword] = useState(null)
+
+  let submit = async() => {
+    let data = {email: email, password:password}
+    let res =  await axios.post("http://localhost:4000/api/auth/login",data)
+    console.log(res.data);
+  }
+
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center bg-PaletteWhite sm:px-4 cursor-default">
       <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
@@ -28,13 +39,17 @@ export default () => {
         </div>
         <div className="bg-white max-sm:bg-transparent max-sm:shadow-none shadow p-4 py-6 space-y-8 sm:p-6 sm:rounded-lg">
 
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            submit()
+          }} className="space-y-5">
             <div>
               <label className="font-medium">Email</label>
               <input
                 type="email"
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-PaletteGreen shadow-sm rounded-lg"
+                onChange={(e)=>setemail(e.target.value)}
               />
             </div>
             <div>
@@ -43,6 +58,7 @@ export default () => {
                 type="password"
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-PaletteGreen  shadow-sm rounded-lg"
+                onChange={(e)=>setpassword(e.target.value)}
               />
             </div>
             <button className="w-full px-4 py-2 text-white font-medium bg-PaletteBrown hover:bg-PaletteGreen rounded-lg duration-150 cursor-pointer">

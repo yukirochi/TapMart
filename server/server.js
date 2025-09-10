@@ -2,10 +2,14 @@ const express = require("express")
 const mongoose = require("mongoose")
 const router = require("./route")
 const dotenv = require("dotenv")
+const cors = require("cors")
 dotenv.config()
 let app = express()
 
 app.use(express.json());
+app.use(cors({
+    origin: "http://localhost:3000"
+}))
 
 app.use("/api",router)
 
