@@ -8,13 +8,15 @@ let signup = async(req,res) => {
 
     if(verify_email){
         res.json({
-           msg:"email taken"
+           msg:"email taken",
+           status: false
         })
     }
 
     if(verify_username){
         res.json({
-           msg:"username taken"
+           msg:"username taken",
+          status: false
         })
     }
 
@@ -26,7 +28,8 @@ let signup = async(req,res) => {
         })
 
         res.json({
-            msg: "user created"
+            msg: "user created",
+            status: true
         })
     }
 }
