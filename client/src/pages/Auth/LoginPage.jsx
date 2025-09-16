@@ -3,15 +3,24 @@ import logo from "../../assets/logo.png"
 import axios from "axios"
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { useUser } from "../../context/usercontext";
+import { useNavigate } from "react-router-dom";
 export default () => {
+  let navigate = useNavigate()
+  const {user, login, logout} = useUser()
   let [email, setemail] = useState(null)
   let [password, setpassword] = useState(null)
 
   let submit = async() => {
     let data = {email: email, password:password}
     let res =  await axios.post("http://localhost:4000/api/auth/login",data)
-    console.log(res.data);
+    let infos = res.data
+  
+    if(infos.status){
+      login(infos.verify_info)
+      navigate("/test")
+    }
+    
   }
 
   return (
