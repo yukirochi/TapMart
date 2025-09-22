@@ -18,7 +18,7 @@ export default () => {
   
     if(infos.status){
       login(infos.verify_info)
-      navigate("/shop")
+      navigate("/shop/categories/Beauty")
     }
     
   }

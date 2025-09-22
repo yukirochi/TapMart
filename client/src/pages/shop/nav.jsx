@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-// Avtar with darpdown menu
+import { Link, NavLink } from "react-router-dom";
 const AvatarMenue = () => {
   const [state, setState] = useState(false);
   const profileRef = useRef();
@@ -63,7 +63,7 @@ export default () => {
 
     let formatted = res.data.map((element) => ({
       title: element.name,
-      path: `/categories/${element.name}`,
+      path: `/shop/categories/${element.name.replace(/\s+/g, "-")}`,
     }));
     setcategories(formatted);
   };
@@ -75,19 +75,19 @@ export default () => {
   const [state, setState] = useState(false);
 
   const navigation = [
-    { title: "Pro version", path: "javascript:void(0)" },
-    { title: "Upgrade", path: "javascript:void(0)" },
-    { title: "Support", path: "javascript:void(0)" },
+    { title: "Pro version", path: "/shop/categories/Beauty" },
+    { title: "Upgrade", path: "/shop/categories/Beauty" },
+    { title: "Support", path: "/shop/categories/Beauty" },
   ];
 
   const submenuNav = categories.length
     ? categories
     : [
-        { title: "Overview", path: "javascript:void(0)" },
-        { title: "Integration", path: "javascript:void(0)" },
-        { title: "Billing", path: "javascript:void(0)" },
-        { title: "Transactions", path: "javascript:void(0)" },
-        { title: "Plans", path: "javascript:void(0)" },
+        { title: "Overview", path: "/shop/categories/Beauty" },
+        { title: "Integration", path: "/shop/categories/Beauty" },
+        { title: "Billing", path: "/shop/categories/Beauty" },
+        { title: "Transactions", path: "/shop/categories/Beauty" },
+        { title: "Plans", path: "/shop/categories/Beauty" },
       ];
 
   return (
@@ -195,16 +195,14 @@ export default () => {
             return (
               <li
                 key={idx}
-                className={`py-1 ${
-                  idx == 0 ? "border-b-2 border-indigo-600" : ""
-                }`}
+                className={`py-1`}
               >
-                <a
-                  href={item.path}
+                <NavLink
+                  to={item.path}
                   className="block py-2 px-3 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 duration-150"
                 >
                   {item.title}
-                </a>
+                </NavLink>
               </li>
             );
           })}

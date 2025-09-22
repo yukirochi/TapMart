@@ -10,7 +10,7 @@ function App() {
       <Route path='/' element={<LandinPage></LandinPage>}/>
       <Route path='/auth/login' element={<LoginPage></LoginPage>} ></Route>
       <Route path="/auth/register" element={<RegisterPage></RegisterPage>}></Route>
-      <Route path="/shop" element={<ShopPage></ShopPage>}></Route>
+      <Route path="/shop/*" element={<ShopPage></ShopPage>}></Route>
     </Routes>
   );
 }
