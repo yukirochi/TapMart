@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../../assets/logo.png"
 const AvatarMenue = () => {
   const [state, setState] = useState(false);
   const profileRef = useRef();
@@ -100,10 +101,10 @@ export default () => {
         <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
           <a href="javascript:void(0)">
             <img
-              src="https://www.floatui.com/logo.svg"
-              width={120}
-              height={50}
-              alt="Float UI logo"
+              src={logo}
+              width={80}
+              height={30}
+              alt="logo"
             />
           </a>
           <div className="lg:hidden">
