@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.png";
 const AvatarMenue = () => {
   const [state, setState] = useState(false);
   const profileRef = useRef();
 
   const navigation = [
-    { title: "Dashboard", path: "javascript:void(0)" },
-    { title: "Analytics", path: "javascript:void(0)" },
-    { title: "Profile", path: "javascript:void(0)" },
-    { title: "Settings", path: "javascript:void(0)" },
+    { title: "Dashboard", path: "/" },
+    { title: "Analytics", path: "/" },
+    { title: "Profile", path: "/" },
+    { title: "Settings", path: "/" },
   ];
 
   useEffect(() => {
@@ -100,12 +100,7 @@ export default () => {
       >
         <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
           <a href="javascript:void(0)">
-            <img
-              src={logo}
-              width={80}
-              height={30}
-              alt="logo"
-            />
+            <img src={logo} width={80} height={30} alt="logo" />
           </a>
           <div className="lg:hidden">
             <button
@@ -194,10 +189,7 @@ export default () => {
         <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
           {submenuNav.map((item, idx) => {
             return (
-              <li
-                key={idx}
-                className={`py-1`}
-              >
+              <li key={idx} className={`py-1`}>
                 <NavLink
                   to={item.path}
                   className="block py-2 px-3 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 duration-150"
