@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "./css/nav.css"
+import "./../../../src/all.css"
 const AvatarMenue = () => {
   const [state, setState] = useState(false);
   const profileRef = useRef();
@@ -59,6 +62,7 @@ const AvatarMenue = () => {
 
 export default () => {
   let [categories, setcategories] = useState([]);
+  const scrollRef = useRef(null); 
   const getCatergories = async () => {
     let res = await axios.get("https://dummyjson.com/products/categories");
 
@@ -99,9 +103,9 @@ export default () => {
         }`}
       >
         <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
-          <a href="javascript:void(0)">
+          <Link to="/shop/categories/beauty">
             <img src={logo} width={80} height={30} alt="logo" />
-          </a>
+          </Link>
           <div className="lg:hidden">
             <button
               className="text-gray-500 hover:text-gray-800"
@@ -185,22 +189,49 @@ export default () => {
           </ul>
         </div>
       </div>
-      <nav className="border-b">
-        <ul className="flex items-center gap-x-3 max-w-screen-xl mx-auto px-4 overflow-x-auto lg:px-8">
-          {submenuNav.map((item, idx) => {
-            return (
-              <li key={idx} className={`py-1`}>
-                <NavLink
-                  to={item.path}
-                  className="block py-2 px-3 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 duration-150"
-                >
-                  {item.title}
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      <nav className="border-b relative flex justify-center">
+  <div className="flex items-center gap-2 max-w-screen-xl w-full px-4 lg:px-8">
+
+    <button
+      onClick={() =>
+        scrollRef.current?.scrollBy({ left: -200, behavior: "smooth" })
+      }
+      className="bg-white shadow rounded-full p-2 z-10 hidden md:block"
+      aria-label="Scroll left"
+    >
+      <ChevronLeft className="w-5 h-5" />
+    </button>
+
+
+    <ul
+      ref={scrollRef}
+      className="flex items-center gap-x-3 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
+    >
+      {submenuNav.map((item, idx) => (
+        <li key={idx} className="py-1 flex-shrink-0">
+          <NavLink
+            to={item.path}
+            className="block py-2 px-3 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 duration-150"
+          >
+            {item.title}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+
+
+    <button
+      onClick={() =>
+        scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" })
+      }
+      className="bg-white shadow rounded-full p-2 z-10 hidden md:block"
+      aria-label="Scroll right"
+    >
+      <ChevronRight className="w-5 h-5" />
+    </button>
+  </div>
+</nav>
+
     </header>
   );
 };

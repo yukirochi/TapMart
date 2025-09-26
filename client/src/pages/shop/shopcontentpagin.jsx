@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import "./../../../src/all.css"
 export default () => {
 
     const [pages, setPages] = useState(["1", "2", "3", , "...", "8", "9", "10",])

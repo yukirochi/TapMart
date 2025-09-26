@@ -1,0 +1,6 @@
+div, img, span, p, section, article {
+  caret-color: transparent;
+}
+input{
+  caret-color: black;
+}
