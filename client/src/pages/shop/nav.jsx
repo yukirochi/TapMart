@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./css/nav.css"
@@ -22,9 +22,9 @@ const AvatarMenue = () => {
     };
     document.addEventListener("click", handleDropDown);
   }, []);
-
+ 
   return (
-    <div className="relative border-t lg:border-none">
+    <div className="relative border-t lg:border-none z-50">
       <div className="">
         <button
           ref={profileRef}
@@ -61,6 +61,8 @@ const AvatarMenue = () => {
 };
 
 export default () => {
+  let navigate = useNavigate()
+  let [search, setsearch] = useState(null)
   let [categories, setcategories] = useState([]);
   const scrollRef = useRef(null); 
   const getCatergories = async () => {
@@ -82,7 +84,7 @@ export default () => {
   const navigation = [
     { title: "Pro version", path: "/shop/categories/Beauty" },
     { title: "Upgrade", path: "/shop/categories/Beauty" },
-    { title: "Support", path: "/shop/categories/Beauty" },
+    { title: "Cart", path: "/shop/categories/Beauty" },
   ];
 
   const submenuNav = categories.length
@@ -94,6 +96,15 @@ export default () => {
         { title: "Transactions", path: "/shop/categories/Beauty" },
         { title: "Plans", path: "/shop/categories/Beauty" },
       ];
+
+        
+  let entersearch = () => {
+    if(!search){
+      return
+    }
+    navigate(`/shop/product/search?q=${search}`)
+
+  }
 
   return (
     <header className="text-base lg:text-sm">
@@ -148,7 +159,11 @@ export default () => {
         >
           <ul className="items-center space-y-6 lg:flex lg:space-x-6 lg:space-y-0">
             <form
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) =>{
+                e.preventDefault()
+                entersearch()
+                }
+              }
               className="flex-1 items-center justify-start pb-4 lg:flex lg:pb-0"
             >
               <div className="flex items-center gap-1 px-2 border rounded-lg">
@@ -170,6 +185,7 @@ export default () => {
                   type="text"
                   placeholder="Search"
                   className="w-full px-2 py-2 text-gray-500 bg-transparent rounded-md outline-none"
+                  onChange={(e)=> setsearch(e.target.value)}
                 />
               </div>
             </form>
@@ -189,7 +205,7 @@ export default () => {
           </ul>
         </div>
       </div>
-      <nav className="border-b relative flex justify-center">
+      <nav className="border-b flex justify-center">
   <div className="flex items-center gap-2 max-w-screen-xl w-full px-4 lg:px-8">
 
     <button

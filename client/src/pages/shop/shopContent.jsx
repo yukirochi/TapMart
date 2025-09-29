@@ -1,17 +1,24 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import Shopcontentpagin from "./shopcontentpagin";
 import Product from "./product";
 import useProductCache from "../../cache/productCache";
 import { useEffect, useState } from "react";
-import "./../../../src/all.css"
-import Noresult from "./noresults"
+import "./../../../src/all.css";
+import Noresult from "./noresults";
 function ShopContent() {
   let params = useParams();
-  let { data, error, loading } = useProductCache(
-    `https://dummyjson.com/products/category/${params.id}`
-  );
+  let [searchParams] = useSearchParams();
+  const query = searchParams.get("q");
+  console.log(query);
+  let url = "";
 
-   if (loading) {
+  if (params.id) {
+    url = `https://dummyjson.com/products/category/${params.id}`;
+  } else if (query) {
+    url = `https://dummyjson.com/products/search?q=${query}`;
+  }
+  let { data, error, loading } = useProductCache(url);
+  if (loading) {
     return (
       <div className="w-full flex h-[40vh] justify-center items-center">
         <div class="flex-col gap-4 w-full flex items-center justify-center">
@@ -28,11 +35,11 @@ function ShopContent() {
 
   return (
     <div className="w-[100vw] overflow-x-hidden flex justify-center items-center flex-col">
-      <div className="w-[100%] lg:max-w-[80vw] h-[100% gap-[50px] flex flex-wrap items-start justify-center mt-10">
-         {data?.products?.map((dat) => (
+      <div className="w-[100%] lg:max-w-[80vw] h-[100%] gap-[50px] flex flex-wrap items-start justify-center mt-10">
+        {data?.products?.map((dat) => (
           <Product
             key={dat.id}
-            id = {dat.id}
+            id={dat.id}
             img={dat.thumbnail}
             name={dat.title}
             price={dat.price}
