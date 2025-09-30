@@ -11,7 +11,9 @@ export default () => {
     try {
       let data = { username: username, email: email, password: password };
       let res = await axios.post("http://localhost:4000/api/auth/signup", data);
-      console.log(res.data);
+      if(res){
+        alert(res.data.msg)
+      }
     } catch (err) {
       console.error(err.message);
     }

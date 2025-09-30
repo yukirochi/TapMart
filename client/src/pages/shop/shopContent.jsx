@@ -9,7 +9,6 @@ function ShopContent() {
   let params = useParams();
   let [searchParams] = useSearchParams();
   const query = searchParams.get("q");
-  console.log(query);
   let url = "";
 
   if (params.id) {

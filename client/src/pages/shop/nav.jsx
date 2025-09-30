@@ -5,23 +5,24 @@ import logo from "../../assets/logo.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./css/nav.css"
 import "./../../../src/all.css"
+import { useUser } from "../../context/usercontext";
 const AvatarMenue = () => {
+  const {user, login, logout} = useUser()
+  let navigate = useNavigate()
   const [state, setState] = useState(false);
   const profileRef = useRef();
 
   const navigation = [
-    { title: "Dashboard", path: "/" },
-    { title: "Analytics", path: "/" },
     { title: "Profile", path: "/" },
     { title: "Settings", path: "/" },
   ];
 
-  useEffect(() => {
+  /*useEffect(() => {
     const handleDropDown = (e) => {
       if (!profileRef.current.contains(e.target)) setState(false);
     };
     document.addEventListener("click", handleDropDown);
-  }, []);
+  }, []);*/
  
   return (
     <div className="relative border-t lg:border-none z-50">
@@ -52,7 +53,10 @@ const AvatarMenue = () => {
             </a>
           </li>
         ))}
-        <button className="block w-full text-justify text-gray-600 hover:text-gray-900 border-t py-3 lg:hover:bg-gray-50 lg:p-3">
+        <button className="block w-full text-justify text-gray-600 hover:text-gray-900 border-t py-3 lg:hover:bg-gray-50 lg:p-3" onClick={()=>{
+          logout()
+          navigate("/")
+        }}>
           Logout
         </button>
       </ul>
@@ -61,7 +65,12 @@ const AvatarMenue = () => {
 };
 
 export default () => {
+  const {user, login, logout} = useUser()
   let navigate = useNavigate()
+  if(!user){
+    navigate("/")
+  }
+
   let [search, setsearch] = useState(null)
   let [categories, setcategories] = useState([]);
   const scrollRef = useRef(null); 
