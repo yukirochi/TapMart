@@ -123,7 +123,7 @@ export default () => {
         }`}
       >
         <div className="flex items-center justify-between py-3 lg:py-5 lg:block">
-          <Link to="/shop/categories/beauty">
+          <Link to="/home">
             <img src={logo} width={80} height={30} alt="logo" />
           </Link>
           <div className="lg:hidden">
