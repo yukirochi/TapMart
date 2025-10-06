@@ -34,7 +34,7 @@ function ShopContent() {
 
   return (
     <div className="w-[100vw] overflow-x-hidden flex justify-center items-center flex-col">
-      <div className="w-[100%] lg:max-w-[80vw] h-[100%] gap-[50px] flex flex-wrap items-start justify-center mt-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 w-full lg:max-w-[70vw] h-full place-items-start justify-items-center mt-10">
         {data?.products?.map((dat) => (
           <Product
             key={dat.id}
