@@ -53,7 +53,7 @@ function HomeContent() {
         <div class="flex-col gap-4 w-full flex items-center justify-center">
           <div class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
             <div class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
-          </div>
+         contents here </div>
         </div>
       </div>
     );
@@ -70,12 +70,7 @@ function HomeContent() {
       ></div>
 
       <div className="grid grid-cols-4 grid-rows-3 sm:gap-3 md:grid-cols-6 md:grid-rows-2 md:gap-5 w-[90%] md:w-[60%] p-3 place-items-center">
-        {results.map((product) => (
-          <div key={product.id} className="w-full h-full border-[1px] aspect-square flex items-center justify-center">
-            <img src={product.thumbnail} alt={product.title} className="object-cover w-full h-full" />
-             {console.log(product)}
-          </div>
-        ))}
+       
       </div>
     </div>
   );
