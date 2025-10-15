@@ -73,7 +73,7 @@ function HomeContent() {
         {results.map((product) => (
           <div key={product.id} className="w-full h-full border-[1px] aspect-square flex items-center justify-center">
             <img src={product.thumbnail} alt={product.title} className="object-cover w-full h-full" />
-             {console.log(product)}
+             {console.log(product)}e
           </div>
         ))}
       </div>
