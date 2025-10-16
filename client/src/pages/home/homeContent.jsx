@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import banner from "../../assets/banner.png";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function HomeContent() {
   const [results, setResults] = useState([]);
@@ -68,10 +68,10 @@ function HomeContent() {
 
       <div className="grid grid-cols-4 grid-rows-3 sm:gap-3 md:grid-cols-6 md:grid-rows-2 md:gap-5 w-[90%] md:w-[60%] p-3 place-items-center">
         {results.map((product) => (
-          <div key={product.id} className="w-full h-full border-[1px] aspect-square flex items-center justify-center">
+          <NavLink key={product.id} className="w-full h-full border-[1px] aspect-square flex items-center justify-center" to={`/shop/categories/${product.category.replace(/\s+/g, "-")}`}>
             <img src={product.thumbnail} alt={product.title} className="object-cover w-full h-full" />
              {console.log(product)}
-          </div>
+          </NavLink>
         ))}
       </div>
     </div>

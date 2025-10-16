@@ -9,7 +9,7 @@ export default () => {
   const { user, login, logout } = useUser();
   useEffect(() => {
     if (user) {
-      navigate("/shop/categories/Beauty");
+      navigate("/home");
     }
   }, []);
 
@@ -24,7 +24,7 @@ export default () => {
 
     if (infos.status) {
       login(infos.verify_info, remember);
-      navigate("/shop/categories/Beauty");
+      navigate("/home");
     }
   };
 
