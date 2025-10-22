@@ -91,8 +91,8 @@ export default () => {
   const [state, setState] = useState(false);
 
   const navigation = [
-    { title: "Pro version", path: "/shop/categories/Beauty" },
-    { title: "Upgrade", path: "/shop/categories/Beauty" },
+    { title: "Costumer Sevice", path: "/shop/categories/Beauty" },
+    { title: "About us", path: "/shop/categories/Beauty" },
     { title: "Cart", path: "/shop/categories/Beauty" },
   ];
 
@@ -199,6 +199,18 @@ export default () => {
               </div>
             </form>
             {navigation.map((item, idx) => {
+              if(item.title === "Cart"){
+                    return (
+                <li key={idx}>
+                  <a
+                    href={item.path}
+                    className="block text-gray-700 hover:text-gray-900"
+                  >
+                   <span class="material-symbols-outlined">shopping_bag</span>
+                  </a>
+                </li>
+              );
+              }
               return (
                 <li key={idx}>
                   <a
