@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
-import "./../../../src/all.css"
+import "./../../../src/all.css";
+import AddtoCart from "./addtoCart";
+import { useState } from "react";
+import { useUser } from "../../context/usercontext";
 function Product({id,img, name,price,rating} ) {
+ 
     return ( 
        <Link to={{
         pathname: `/shop/product/${id}/${name}`
@@ -23,11 +27,13 @@ function Product({id,img, name,price,rating} ) {
     <form className="mt-2">
       <button
         className="block w-full rounded-sm bg-yellow-400 py-1.5 text-xs font-medium transition hover:scale-105"
+       
       >
         Add to Cart
       </button>
     </form>
   </div>
+ 
 </Link>
 
      );

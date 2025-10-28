@@ -206,7 +206,7 @@ export default () => {
                     href={item.path}
                     className="block text-gray-700 hover:text-gray-900"
                   >
-                   <NavLink  to={"/shop/cart"}><span class="material-symbols-outlined">shopping_bag</span> </NavLink>
+                   <NavLink  to={"/shop/cart"}><span className="material-symbols-outlined">shopping_bag</span> </NavLink>
                   </a>
                 </li>
               );

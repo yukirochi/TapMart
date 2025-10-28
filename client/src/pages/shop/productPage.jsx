@@ -3,6 +3,9 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import "./../../../src/all.css";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useUser } from "../../context/usercontext";
+import AddtoCart from "./addtoCart";
+
 export default () => {
   let params = useParams();
   let navigate = useNavigate()
@@ -11,6 +14,7 @@ export default () => {
   let { data, error, loading } = useProductCache(
     `https://dummyjson.com/products/${params.id}`
   );
+   let {togglecart, togglecartt} = useUser()
   
 
   if (loading) {
@@ -27,6 +31,7 @@ export default () => {
 
   console.log(data);
   return (
+    <div>
     <section class="bg-white dark:bg-gray-900">
       {data && (
         <div class="container px-6 py-10 mx-auto">
@@ -91,7 +96,11 @@ export default () => {
                 <button className="button ">
                   <p class="text">Buy Now</p>
                 </button>
-                <button class="button">
+                <button class="button"  onClick={(e)=>{
+          e.preventDefault();  
+          e.stopPropagation();
+          togglecart()
+        }}>
                   <svg
                     viewBox="0 0 16 16"
                     class="bi bi-cart-check"
@@ -124,6 +133,9 @@ export default () => {
           </div>
         </div>
       )}
+     
     </section>
+      { togglecartt && <AddtoCart></AddtoCart>}
+    </div>
   );
 };

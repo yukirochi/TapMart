@@ -29,9 +29,19 @@ export function Usercontext({ children }) {
     localStorage.removeItem("user");
     sessionStorage.removeItem("user")
   };
+  let [togglecartt, usetogglecart] = useState(false)
+  const togglecart = () =>{
+    if(togglecartt === false){
+      usetogglecart(true)
+      return true
+    }else{
+      usetogglecart(false)
+      return false
+    }
+  }
 
   return (
-    <Usercont.Provider value={{ user, login, logout }}>
+    <Usercont.Provider value={{ user, login, logout, togglecart, togglecartt }}>
       {children}
     </Usercont.Provider>
   );
