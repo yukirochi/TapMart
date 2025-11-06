@@ -7,12 +7,12 @@ let Login = async (req, res) => {
   let verify_info = await model.findOne({ email: email });
   
   if (!verify_info)
-    return res.json({ msg: "Invalid Credentials1", status: false });
+    return res.json({ msg: "Invalid Credentials", status: false });
 
   let matchPassword = await bcrypt.compare(password, verify_info.password);
 
   if (!matchPassword)
-    return res.json({ msg: "Invalid Credentials2", status: false });
+    return res.json({ msg: "Invalid Credentials", status: false });
 
   res.json({
     msg: "login successfuly",

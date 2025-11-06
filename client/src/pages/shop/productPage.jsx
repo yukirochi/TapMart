@@ -4,7 +4,7 @@ import "./../../../src/all.css";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useUser } from "../../context/usercontext";
-import AddtoCart from "./addtoCart";
+
 
 export default () => {
   let params = useParams();
@@ -28,8 +28,6 @@ export default () => {
       </div>
     );
   }
-
-  console.log(data);
   return (
     <div>
       <section class="bg-white dark:bg-gray-900">
@@ -72,7 +70,7 @@ export default () => {
                 </p>
 
                 <h3 class="mt-3 text-lg font-medium text-blue-500">
-                  {data.price}$
+                  ${data.price}
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300">
                   {data.shippingInformation}
@@ -101,6 +99,7 @@ export default () => {
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
+                      console.log(params.id);    
                     }}
                   >
                     <svg

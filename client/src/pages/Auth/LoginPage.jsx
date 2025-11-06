@@ -25,6 +25,8 @@ export default () => {
     if (infos.status) {
       login(infos.verify_info, remember);
       navigate("/home");
+    }else{
+      alert(infos.msg)
     }
   };
 
