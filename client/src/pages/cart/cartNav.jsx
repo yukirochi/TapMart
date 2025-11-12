@@ -28,11 +28,7 @@ const ProfileDropDown = (props) => {
                     onClick={() => setState(!state)}
                 >
                     <img
-                        src="https://randomuser.me/api/portraits/men/46.jpg"
-                        className="w-full h-full rounded-full"
-                    />
-                </button>
-                <div className="lg:hidden">
+                        src="https://randomuser.me/api/portraits/men/46.jpg"></img>  <div className="lg:hidden">
                     <span className="block">Micheal John</span>
                     <span className="block text-sm text-gray-500">john@gmail.com</span>
                 </div>

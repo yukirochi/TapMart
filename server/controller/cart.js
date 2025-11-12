@@ -19,7 +19,7 @@ let addtocart = async (req, res) => {
     }
   } 
 
-  await cart.save();
-    res.status(200).json({ success: true, cart });
+  await checkuserid.save();
+    res.status(200).json({ success: true, checkuserid });
 };
 module.exports = addtocart;
